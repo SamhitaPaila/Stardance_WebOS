@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 
-  <body style="background-color: rgb(205, 217, 236); font-family: Helvetica, Noto Sans, sans-serif">
-    <div style="position: absolute; top: 15; left: 4%; transform: translate(0%, 4%); padding: 10px; border: thick double #1d87b1; width: fit-content; border-radius: 16px">
+  <body style="background-image: url(lanterns-night.png); background-size: cover; font-family: Helvetica, Noto Sans, sans-serif">
+    <div style="display: flex; justify-content: space-between; backdrop-filter: blur(10px); background-color: rgba(30, 29, 120, 0.255)">
+      <p style="color: white;">
+        SamhitaOS
+      </p>
+      <p id="timeElement" style="color: white;">
+        <!--Date and Time will be displayed-->
+      </p>
+    </div>
+    <div style="background-color: rgb(205, 217, 236); position: relative; margin-top: 15px; margin-left: 4%; padding: 10px; border: thick double #1d87b1; width: fit-content; border-radius: 16px">
       <h1 style="padding: 4px; margin: 4px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Welcome to my OS</h1>
-      <h2 style="color: rgb(10, 88, 166); font-family:'Times New Roman', Times, serif">Introduction</h2>
-      <p style = "color:cadetblue; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Hello World!</strong></p>
+      <h2 style="color: rgb(98, 143, 187); font-family:'Times New Roman', Times, serif">Introduction</h2>
+      <p style = "color:rgb(80, 168, 171); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Hello World!</strong></p>
       <img src="./city.png" height=264px style="border-radius: 16px; object-fit: cover"/>
       <br>
       <a href="https://www.pinterest.com/ghoullings/aesthetics-cities/">label</a>
@@ -16,6 +24,10 @@
       <p> <dfn>DFN Tag</dfn> is a tag that marks something being defined</p>
       <p><abbr title="abbreviation">abbr</abbr> is a tag that marks an abbreviated term</p>
     </div>
+    <div id="welcome" styles="color: white;">
+      <!--welcome screen content-->
+    </div>
+    <script src="script.js"></script>
   </body>
 
 </html>
