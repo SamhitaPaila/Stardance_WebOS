@@ -1,6 +1,6 @@
 {
   "name": "Stardance Hack Club Project",
-  "forwardPorts":,
+  "forwardPorts": [],
   "portsAttributes": {
     "8000": {
       "label": "App Server",
