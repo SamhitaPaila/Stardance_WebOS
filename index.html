@@ -1,33 +1,170 @@
 <!DOCTYPE html>
 <html>
 
-  <body style="background-image: url(lanterns-night.png); background-size: cover; font-family: Helvetica, Noto Sans, sans-serif">
-    <div style="display: flex; justify-content: space-between; backdrop-filter: blur(10px); background-color: rgba(30, 29, 120, 0.255)">
-      <p style="color: white;">
+  <head>
+    <meta charset="UTF-8">
+    <title>SamhitaOS</title>
+  </head>
+
+  <body id="desktop" style="background-image: url(lanterns-night.png); background-size: cover; background-position: center bottom; background-attachment: fixed; font-family: Helvetica, Noto Sans, sans-serif; margin: 0; padding: 0; overflow: hidden; height: 100vh;">
+    
+    <!-- Top Menu Bar: Opacity reduced to 0.3 to make it much more see-through -->
+    <div style="display: flex; justify-content: space-between; backdrop-filter: blur(10px); background-color: rgba(240, 244, 250, 0.5)">
+      <p style="color: #333; margin: 8px 12px; font-size: 14px; font-weight: bold;">
         SamhitaOS
       </p>
-      <p id="timeElement" style="color: white;">
+      <p id="timeElement" style="color: #333; margin: 8px 12px; font-size: 14px; font-weight: bold;">
         <!--Date and Time will be displayed-->
       </p>
     </div>
-    <div style="background-color: rgb(205, 217, 236); position: relative; margin-top: 15px; margin-left: 4%; padding: 10px; border: thick double #1d87b1; width: fit-content; border-radius: 16px">
-      <h1 style="padding: 4px; margin: 4px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Welcome to my OS</h1>
-      <h2 style="color: rgb(98, 143, 187); font-family:'Times New Roman', Times, serif">Introduction</h2>
-      <p style = "color:rgb(80, 168, 171); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Hello World!</strong></p>
-      <img src="./city.png" height=264px style="border-radius: 16px; object-fit: cover"/>
-      <br>
-      <a href="https://www.pinterest.com/ghoullings/aesthetics-cities/">label</a>
-      <br>
-      <s>Strike Through</s>
-      <p>break the <br> line like this</p>
-      <p>use strong to <strong>bold text</strong></p>
-      <p> <dfn>DFN Tag</dfn> is a tag that marks something being defined</p>
-      <p><abbr title="abbreviation">abbr</abbr> is a tag that marks an abbreviated term</p>
+    
+    <!-- Introduction Window -->
+    <div id="window" style="background-color: rgb(205, 217, 236); position: absolute; top: 100px; left: 50px; padding: 10px; border: thick double #1d87b1; width: 340px; min-width: 250px; min-height: 200px; border-radius: 16px; user-select: none; z-index: 10; display: flex; flex-direction: column;">
+      <div id="windowheader" style="background-color: rgba(29, 135, 177, 0.15); color: #1d87b1; cursor: move; display: flex; justify-content: space-between; align-items: center; padding: 6px; margin: -10px -10px 8px -10px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <span style="font-size: 13px; font-weight: bold;">✢ Introduction Window</span>
+        <div onclick="closeWindow(document.getElementById('window'))" style="width: 12px; height: 12px; background-color: #ff5f56; border-radius: 50%; cursor: pointer;" title="Close"></div>
+      </div>
+
+      <div style="flex: 1; overflow-y: auto; padding-right: 4px;">
+        <h1 style="padding: 4px; margin: 4px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Welcome to my OS</h1>
+        <h2 style="color: rgb(98, 143, 187); font-family:'Times New Roman', Times, serif">Introduction</h2>
+        <p style="color:rgb(80, 168, 171); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+          Hi! My name is Samhita and this is my first WebOS. My favourite colour is <strong>blue</strong>, and I love the <strong>city</strong>.
+        </p>
+        <img src="./city.png" style="width: 100%; height: auto; max-height: 264px; border-radius: 16px; object-fit: cover"/>
+        <br>
+        <a href="https://pinterest.com">label</a>
+        <br>
+        <p>
+          Here are some things I have learned:<br>
+          I learned how to write text that is <s>striked through</s> using 's'.
+          <br>I learned how to break <br> the line like this using br.
+          <br>I learned how to use strong to <strong>bold text</strong>
+          <br> I learned how to use a <dfn>DFN Tag</dfn> that marks something being defined
+          Lastly, I learned how <abbr title="abbreviation">abbr</abbr> is a tag that marks abbreviated terms.
+        </p>
+      </div>
+
+      <div style="position: absolute; bottom: 0; right: 0; width: 15px; height: 15px; cursor: se-resize; background: linear-gradient(135deg, transparent 40%, rgba(29, 135, 177, 0.6) 40%); border-bottom-right-radius: 16px; z-index: 30;" onmousedown="startResizing(event, document.getElementById('window'))"></div>
     </div>
-    <div id="welcome" styles="color: white;">
-      <!--welcome screen content-->
+        <!-- Wallpaper Changer Window -->
+    <div id="explorerWin" style="background-color: rgb(240, 244, 250); position: absolute; top: 150px; left: 450px; padding: 10px; border: thick double #50a8ab; width: 300px; min-width: 250px; min-height: 150px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); user-select: none; z-index: 10; display: flex; flex-direction: column;">
+      <div id="explorerWinheader" style="background-color: rgba(80, 168, 171, 0.15); color: #3c7d80; cursor: move; display: flex; justify-content: space-between; align-items: center; padding: 6px; margin: -10px -10px 8px -10px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <span style="font-size: 13px; font-weight: bold;">✢ Settings Window</span>
+        <div onclick="closeWindow(document.getElementById('explorerWin'))" style="width: 12px; height: 12px; background-color: #ff5f56; border-radius: 50%; cursor: pointer;" title="Close"></div>
+      </div>
+      
+      <div style="flex: 1; overflow-y: auto;">
+        <h3 style="margin: 5px 0; font-size: 16px; color: #333;">Desktop Wallpapers</h3>
+        <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Click a theme to swap your background wallpaper:</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button onclick="document.getElementById('desktop').style.backgroundImage = 'url(lanterns-night.png)'" style="background: #1e1d78; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 12px;">Lanterns</button>
+          <button onclick="document.getElementById('desktop').style.backgroundImage = 'url(beige_bg.png)'" style="background: #c3b091; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 12px;">Beige</button>
+          <button onclick="document.getElementById('desktop').style.backgroundImage = 'url(city_bg.png)'" style="background: #333; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 12px;">City Night</button>
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 0; right: 0; width: 15px; height: 15px; cursor: se-resize; background: linear-gradient(135deg, transparent 40%, rgba(80, 168, 171, 0.6) 40%); border-bottom-right-radius: 16px; z-index: 30;" onmousedown="startResizing(event, document.getElementById('explorerWin'))"></div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- App Icons -->
+    <div style="position: absolute; top: 80px; left: 20px; display: flex; flex-direction: column; gap: 20px; user-select: none;">
+      <div onclick="openWindow(document.getElementById('window'))" style="display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 70px;">
+        <div style="width: 45px; height: 45px; background-color: rgba(255,255,255,0.2); backdrop-filter: blur(5px); border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 22px; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">👤</div>
+        <span style="color: white; text-shadow: 1px 1px 3px black; font-size: 11px; margin-top: 4px; text-align: center;">About Me</span>
+      </div>
+      <div onclick="openWindow(document.getElementById('explorerWin'))" style="display: flex; flex-direction: column; align-items: center; cursor: pointer; width: 70px;">
+        <div style="width: 45px; height: 45px; background-color: rgba(255,255,255,0.2); backdrop-filter: blur(5px); border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 22px; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">⚙️</div>
+        <span style="color: white; text-shadow: 1px 1px 3px black; font-size: 11px; margin-top: 4px; text-align: center;">Settings</span>
+      </div>
+    </div>
+
+    <!-- Core Logic Engines -->
+    <script>
+      function updateTime() {
+          var currentTime = new Date().toLocaleString();
+          var timeText = document.querySelector("#timeElement");
+          if (timeText) timeText.innerHTML = currentTime;
+      }
+      setInterval(updateTime, 1000);
+      updateTime();
+
+      window.onload = function() {
+        dragElement(document.getElementById("window"));
+        dragElement(document.getElementById("explorerWin"));
+      }
+
+      function dragElement(element) {
+        if (!element) return;
+        var initialX = 0, initialY = 0, currentX = 0, currentY = 0;
+        var header = document.getElementById(element.id + "header");
+
+        if (header) {
+          header.onmousedown = startDragging;
+        } else {
+          element.onmousedown = startDragging;
+        }
+
+        function startDragging(e) {
+          e = e || window.event;
+          var win1 = document.getElementById("window");
+          var win2 = document.getElementById("explorerWin");
+          if (win1) win1.style.zIndex = "10";
+          if (win2) win2.style.zIndex = "10";
+          element.style.zIndex = "20";
+
+          initialX = e.clientX;
+          initialY = e.clientY;
+          document.onmouseup = stopDragging;
+          document.onmousemove = onElementDrag;
+        }
+
+        function onElementDrag(e) {
+          e = e || window.event;
+          currentX = initialX - e.clientX;
+          currentY = initialY - e.clientY;
+          initialX = e.clientX;
+          initialY = e.clientY;
+          element.style.top = (element.offsetTop - currentY) + "px";
+          element.style.left = (element.offsetLeft - currentX) + "px";
+        }
+
+        function stopDragging() {
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+      }
+
+      function closeWindow(element) {
+          if (element) element.style.display = "none";
+      }
+
+      function openWindow(element) {
+          if (element) element.style.display = "flex";
+      }
+
+      function startResizing(e, element) {
+        if (!element) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var startWidth = parseFloat(getComputedStyle(element, null).getPropertyValue('width'));
+        var startHeight = parseFloat(getComputedStyle(element, null).getPropertyValue('height'));
+        var startX = e.clientX;
+        var startY = e.clientY;
+
+        function doResize(moveEvent) {
+          element.style.width = (startWidth + moveEvent.clientX - startX) + 'px';
+          element.style.height = (startHeight + moveEvent.clientY - startY) + 'px';
+        }
+
+        function stopResize() {
+          document.removeEventListener('mousemove', doResize);
+          document.removeEventListener('mouseup', stopResize);
+        }
+        document.addEventListener('mousemove', doResize);
+        document.addEventListener('mouseup', stopResize);
+      }
+    </script>
   </body>
 
 </html>
