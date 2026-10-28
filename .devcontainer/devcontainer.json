@@ -1,0 +1,11 @@
+{
+  "name": "Stardance Hack Club Project",
+  "forwardPorts":,
+  "portsAttributes": {
+    "8000": {
+      "label": "App Server",
+      "onAutoForward": "openPreview",
+      "visibility": "public"
+    }
+  }
+}
