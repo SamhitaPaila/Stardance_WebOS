@@ -7,7 +7,6 @@ function updateTime() {
 }
 setInterval(updateTime, 1000);
 
-// Initialize dragging hooks for your system modules once windows render
 window.onload = function() {
   dragElement(document.getElementById("window"));
   dragElement(document.getElementById("explorerWin"));
@@ -26,8 +25,6 @@ function dragElement(element) {
 
   function startDragging(e) {
     e = e || window.event;
-    
-    // Manage stacking layer layout levels cleanly on select focus
     var win1 = document.getElementById("window");
     var win2 = document.getElementById("explorerWin");
     if (win1) win1.style.zIndex = "10";
@@ -66,7 +63,6 @@ function openWindow(element) {
     if (element) element.style.display = "flex";
 }
 
-// Window Sizing engine tracker layout definitions
 function startResizing(e, element) {
   if (!element) return;
   e.preventDefault();
